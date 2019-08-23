@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/cal.css' %}" />
+</head>
+<body>
+{{user}}<br>
+    {% for day in day_list %}
+        {{day}}<br>
+        {% for d in days %}
+            {% if d.name == day %}
+                {% for p in d.periods.all %}
+                        <div class="marked">
+                        <form method="post">
+                        {% csrf_token %}
+                        {{p.name}}
+                        <br>
+                        <input type="radio" name="status"> Present<br>
+                        <input type="radio" name="status"> Absent<br>
+                        <input type="radio" name="status"> Cancelled<br> 
+                        <input type="submit" name="{{p.id}}">
+                        </form>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

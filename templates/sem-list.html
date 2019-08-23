@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    Semesters
+{% endblock title %}
+
+{% block csscontent %}
+        <link rel="stylesheet" href="{% static 'styles/stats-list.css' %}">
+{% endblock csscontent %}
+
+{% block pagename %} 
+    Semesters
+{% endblock pagename %}
+
+{% block content %}
+    {% if current_sems.count > 1 %}
+    <div class="heading">
+        Current Semesters
+    </div>
+    {% else %}
+    <div class="heading">
+        Current Semester
+    </div>
+    {% endif %}
+
+
+    {% if current_sems.count == 0 %}
+    You have no current semesters.
+    {% else %}
+    {% for current_sem in current_sems %}
+    <div class="current-panel">
+        <div class="info">
+            <div class="current-sem">
+                {{current_sem.name}}
+            </div>
+            <div class="dates">
+                {{current_sem.start_date}} - {{current_sem.last_date}}
+            </div>
+        </div>
+        <form action="{% url 'seminfo:seminfo' id=current_sem.id %}">
+            <button class="next-button"><img id="next" src="{% static 'images/arrow-right-icon-white.svg' %}"></button>
+        </form>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="heading">
+        All Semesters
+    </div>
+    <div class="panel">
+        {% for sem in sems %}
+            <div class="sem">
+                <div class="name">
+                    {{sem.name}}
+                </div>
+                <form action="{% url 'seminfo:seminfo' id=sem.id %}">
+                    <button class="next-button"><img id="next-light" src="{% static 'images/arrow-right-icon-grey.svg' %}"></button>
+                </form>
+            </div> 
+        {% endfor %}  
+    </div>
+{% endblock content %}

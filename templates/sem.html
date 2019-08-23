@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    {{sem.name}}
+{% endblock title %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static '/styles/sem.css' %}">
+{% endblock csscontent %}
+
+{% block pagename %} 
+    {{sem.name}}
+{% endblock pagename %}
+
+{% block content %}
+    <div class="current-panel">
+        <div class="dates">{{sem.start_date}} - {{sem.last_date}}</div>
+            <div class="wrapper">
+                <div class="info">
+                    <div class="label">Minimum Attendance: </div><h1>{{sem.min_attendance}}%</h1>
+                </div>
+                <form action="{% url 'seminfo:statsDetail' id=sem.id category="all-time" %}">
+                    <button id="reset">View Stats <img id="go" src="{% static 'images/arrow-right-icon-white.svg' %}"></button>
+                </form>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="heading">
+                Subjects
+            </div>
+                <form action="/semesters/calendar/">
+                    <button id="reset" class="sec">Add / Edit</button>
+                </form>
+            </div>
+            <div class="panel">
+                {% for sub in subs %}
+                <div class="subject">
+                    {{sub.name}}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="wrapper">
+            <div class="heading">Timetable</div>
+            <form action="/semesters/calendar/">
+                <button id="reset" class="sec">Edit</button>
+            </form>
+            </div>
+            <div class="scrolling-wrapper">
+                {% for day in days %}
+                <div class="card">
+                    <div class="day">{{day}}</div>
+                    {{periods.counter}}
+                    {% if periods.counter == 0 %}
+                    {% else %}
+                    <div class="list">
+                    {% for p in periods %}
+                        {% if p.name == day %}
+                            <div class="lec">{{p.period.name}}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+{% endblock content %}

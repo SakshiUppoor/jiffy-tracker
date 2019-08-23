@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://kit.fontawesome.com/ee42aa8718.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Base</title>
+        <link rel="stylesheet" href="base.css">
+        <link rel="stylesheet" href="stats.css">
+        <link rel="stylesheet" href="circle.css">
+    </head>
+    <body>
+        <nav>
+            <div class="content">
+                <div class="main-section">
+                    <ul>
+                        <li><a class="main" href="#">Schedule</a>
+                        <li><a class="main" href="#">Calendar</a>
+                        <li><a class="main" href="#">Statistics</a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <ul>
+                        <li><a href="#">Semesters</a></li>
+                        <ul>
+                            <li><a href="#">Add Semester</a>
+                            <li><a href="#">Edit Semester Info</a>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="section2">
+                    <img class="avatar" src="images/default-profile-image.svg">
+                    <div class="name">Sakshi Uppoor</div>
+                </div>
+            </div>
+        </nav>
+        <div class="page">
+            <div class="navbar">
+                <img class="back" src="images/arrow-left-icon.svg">
+                <div class="page-name">Statistics</div>
+                <img class="menu-icon" src="images/menu-modern.svg">
+            </div>
+        <div class="first">
+            <div class="heading">Overall</div>
+            <form action="/semesters/calendar/">
+                <button id="reset">View Info</button>
+            </form>
+        </div>
+            <div class="current-panel">
+                <div class="wrapper">
+                    <div class="info">
+                        <div class="current-sem">Semester III</div>
+                        <div class="label">Attended: </div><h1>2/3</h1><br>
+                        <div class="label">Cancelled: </div><h1>23</h1><br>
+                    </div>
+                    <div class="c100 c100-main p75 main">
+                        <span>75%</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="outer">
+            <div class="heading">Monthly</div>
+            <div class="value"><select  class = "options" name="new_lec">
+                    
+                    <option value="71">July</option>
+                    
+                    <option value="74">Aug</option>
+                    
+                    <option value="75">Sep</option> 
+
+                    <option value="75">Nov</option> 
+                    <option value="75">All-time</option>      
+    </select><img id="go" src="images/go.svg"></div>
+    </div>
+</div>
+                <div class="panel">
+                    <div class="sem">
+                        <div class="details">
+                            <div class="sname">AM</div>
+                            <div class="status-purple">You can skip next 2 lectures</div>
+                        </div>
+                    <div class="sem-info">
+                        <div class="info">
+                            <div class="label">Attended: </div><h1>3/6</h1><br>
+                            <div class="label">Cancelled: </div><h1>23</h1><br>
+                        </div>
+                        <div class="c100 p75 small">
+                                <span>85%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="sem">
+                        <div class="details">
+                            <div class="sname">DM</div>
+                            <div class="status-orange">You cannot skip next 2 lectures</div>
+                        </div>
+                    <div class="sem-info">
+                        <div class="info">
+                            <div class="label">Attended: </div><h1>3/6</h1><br>
+                            <div class="label">Cancelled: </div><h1>23</h1><br>
+                        </div>
+                        <div class="c100 p65 orange small">
+                                <span>65%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div class="sem">
+                            <div class="details">
+                                <div class="sname">DLDA</div>
+                                <div class="status-yellow">You cannot skip the next lecture</div>
+                            </div>
+                        <div class="sem-info">
+                            <div class="info">
+                                <div class="label">Attended: </div><h1>3/6</h1><br>
+                                <div class="label">Cancelled: </div><h1>23</h1><br>
+                            </div>
+                            <div class="c100 p75 yellow small">
+                                    <span>75%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                        </div>
+                    
+                        <div class="sem">
+                                <div class="details">
+                                    <div class="sname">OOPM</div>
+                                    <div class="status-purple">You can skip next 2 lectures</div>
+                                </div>
+                            <div class="sem-info">
+                                <div class="info">
+                                    <div class="label">Attended: </div><h1>3/6</h1><br>
+                                    <div class="label">Cancelled: </div><h1>23</h1><br>
+                                </div>
+                                <div class="c100 p100 small">
+                                        <span>100%</span>
+                                        <div class="slice">
+                                            <div class="bar"></div>
+                                            <div class="fill"></div>
+                                        </div>
+                                    </div>
+                            </div>
+                                
+                    

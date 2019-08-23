@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/events.css' %}">
+    <meta charset="utf-8" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>-->
+</head>
+<body>
+    <aside class="sticky">
+        <div>
+        <figure>
+            <figcaption>Onyx.</figcaption>
+        </figure>
+        </div>
+        <div>
+        <nav >
+            <ul>
+                <li ><a href="#">Calendar</a></li>
+                <li><a href="../"  >Statistics</a></li>
+                <li><a href="#" class="active">Events</a></li>
+            </ul>
+        </nav>
+        </div>
+    </aside>
+    <div class="bar">
+    
+    <form method="POST" action="{% url 'accounts:user_logout' %}">
+    {% csrf_token %}
+    <input type="submit" value="Logout">
+    </form>
+    {{username}}
+    </div>
+    <main>
+        {% for sem in sems %}
+        <div class="banner">
+            <h3>{{sem.name}}</h3>
+            <h6>{{sem.start_date}} - {{sem.last_date}}</h6>
+        </div>
+        <div>
+        {% for d in dl %}
+        <br>
+        <br>
+        <b>{{d}}</b>
+        <br>
+        {% for day in days %}
+        {% if day.name == d %}
+        {% if day.semester.name == sem.name %}
+        {% for period in day.periods.all%}
+        {{period.name}}
+        <br>
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}  
+        {% endfor %}  
+        </div>      
+        {% endfor %}
+    </main>
+</body>
+</html>

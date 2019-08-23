@@ -1,0 +1,7 @@
+.btn-link, .btn-lg {
+    border-color:#0069D9;
+}
+
+.btn-link:focus {
+    text-decoration: none;
+}

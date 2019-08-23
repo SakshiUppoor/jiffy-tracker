@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    Statistics
+{% endblock title %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static '/styles/stats.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/circle.css' %}">
+{% endblock csscontent %}
+
+{% block pagename %} 
+    Statistics
+{% endblock pagename %}
+
+{% block stats %}
+    currentpage
+{% endblock stats %}
+
+{% block content %}
+    <div class="first">
+        <div class="heading">Overall</div>
+            <form action="/semesters/calendar/">
+                <button id="reset">
+                    View Info
+                </button>
+            </form>
+        </div>
+        <div class="current-panel">
+            <div class="wrapper">
+                <div class="info">
+                    <div class="current-sem">
+                        {{sem.name}}
+                    </div>
+                    <div class="label">Attended: </div>
+                    <h1>{{present}}/{{sum}}</h1><br>
+                    <div class="label">Cancelled: </div><h1>{{cancelled}}</h1><br>
+                    </div>
+                    <div class="c100 c100-main p{{percentInt}} main">
+                        <span>{{percent}}%</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="outer">
+            <div class="heading">All-time</div>
+            <div class="value"><select  class = "options" name="new_lec">
+                    
+                    <option value="71">July</option>
+                    
+                    <option value="74">Aug</option>
+                    
+                    <option value="75">Sep</option> 
+
+                    <option value="75">Nov</option> 
+                    <option value="75" selected>All-time</option>      
+    </select><img id="go" src="images/go.svg"></div>
+    </div>
+</div>
+    <div class="panel">
+        {% for sub in subs %}
+            <div class="sem">
+                <div class="details">
+                    <div class="sname">
+                        {{sub.name}}
+                    </div>
+                    <div class="status-purple">
+                        You can skip next 2 lectures
+                    </div>
+                </div>
+                <div class="sem-info">
+                    <div class="info">
+                        <div class="label">Attended: </div><h1>3/6</h1><br>
+                        <div class="label">Cancelled: </div><h1>23</h1><br>
+                        </div>
+                        <div class="c100 p75 small">
+                                <span>85%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+                                
+         
+{% endblock content %}

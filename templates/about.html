@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jiffy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/about.css' %}">
+</head>
+<body background="#E9ECEF">
+    
+    <div style="margin-top: 120px;" class="jumbotron">
+        <h1 class="display-4">Jiffy</h1>
+        <p class="lead">welcomes you!</p>
+        <hr class="my-4">
+        <p>Jiffy is an attendance manager that provides a smart and efficient way for students to keep track of their attendance.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'accounts:user_login' %}" role="button">Login</a>
+        <a href="{% url 'accounts:register' %}" class="btn btn-link btn-lg" role="button">Join Now</a>
+      </div>
+    
+</body>
+</html>

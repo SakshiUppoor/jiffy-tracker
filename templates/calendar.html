@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    Calendar 
+{% endblock title %}
+
+{% block pagename %}
+    Calendar
+{% endblock pagename %}
+
+{% block cal %}{
+    currentpage
+{% endblock cal %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static '/styles/calendar.css' %}">
+{% endblock csscontent %}
+
+{% block content %}
+    <div class="page">
+        <div class="elegant-calendar">
+            <div class="clearfix">
+                <div class="head-container">
+                    <div class="head-date">
+                        {{date}} {{month_name}}, {{year}}
+                    </div>
+                    <div class="control">
+                        <div class="arrows">
+                            {% with premonth=month|add:"-1" %}
+                            {% with preyear=year|add:"-1" %}
+                            {% if month > 1 %}
+                                <form action="{% url 'seminfo:calendar' date=1 month=premonth year=year %}">
+                            {% else %}
+                                <form action="{% url 'seminfo:calendar' date=1 month=12 year=preyear %}">
+                            {% endif %}
+                                <button class="pre-button"><img id="pre" src="{% static '/images/arrow-left-icon-white.svg' %}"></button>
+                            </form>
+                        {% endwith %}
+                        {% endwith %}
+                        {% with postmonth=month|add:"1" %}
+                        {% with postyear=year|add:"1" %}
+                        {% if month < 12 %}
+                            <form action="{% url 'seminfo:calendar' date=1 month=postmonth year=year %}">
+                        {% else %}
+                            <form action="{% url 'seminfo:calendar' date=1 month=1 year=postyear %}">
+                        {% endif %}
+                        <button class="next-button"><img id="next" src="{% static '/images/arrow-right-icon-white.svg' %}"></button>
+                    </form>
+                    {% endwith %}
+                    {% endwith %}
+                    </div>
+                </div>
+            
+        </div>
+        <table id="calendar" class="thead">
+            <thead>
+                <tr class="tableheader">
+                    <div><th {% if day_no == 0 %}class="selected" {% endif %}>Mo</th></div>
+                    <div><th {% if day_no == 1 %}class="selected" {% endif %}>Tu</th></div>
+                    <div><th {% if day_no == 2 %}class="selected" {% endif %}>We</th></div>
+                    <div><th {% if day_no == 3 %}class="selected" {% endif %}>Th</th></div>
+                    <div><th {% if day_no == 4 %}class="selected" {% endif %}>Fr</th></div>
+                    <div ><th {% if day_no == 5 %}class="selected" {% endif %}>Sa</th></div>
+                    <div><th {% if day_no == 6 %}class="selected" {% endif %}>Su</th></div>
+                </tr>
+            </thead>
+        <table>
+        <table class="dates">
+            <tbody>
+                <tr class="datecolumn">
+                    {% for j in gaps %}
+                        <div><td></td></div>
+                    {% endfor %}
+                    {% for j in dates %}
+                        <div>
+                            <td 
+                                {% if j == date %}
+                                    class="selected"  
+                                {% endif %}
+                            >
+                                <a 
+                                    href="{% url 'seminfo:calendar' date=j month=month year=year %}"
+                                >
+                                    {{j}}
+                                </a>
+                            </td>
+                        </div>
+                    {% endfor %}
+                </tr>   
+            </tbody>
+        </table>
+        </div>
+        <div class="dummy">
+            <div class="blank"></div>
+            <form action="/semesters/calendar/">
+                <button id="reset">Go  to today</button>
+            </form>
+        </div>
+        </div>
+        <div class="heading">Lectures</div>
+        <div class="lectures">
+            {% if lectures %}
+                {% for lec in lectures %}
+                    {% if lec.status == '0' %}
+                        <div class="lec">
+                        <div class="pname">
+                            {{lec.subject.name}}
+                        </div>
+                        <div class="status">
+                            <div class="value">
+                                {% if future == False %}
+                                <form method="post" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{lec.id}}"></input>
+                                <select  class = "options" name="status">
+                                    <option value="P">Present</option>
+                                    
+                                    <option value="A">Absent</option>
+                                    
+                                    <option value="C">Cancelled</option>
+                                    
+                    </select>
+                                <input id="go" type="image" src="{% static '/images/go.svg' %}" name="submit"></input>
+                        </form>
+                        {% else %}
+                        <div class="error">Cannot mark future lectures.</div>
+                        {% endif %}
+                    </div>  
+                </div>      
+            </div>
+                    {% else %}
+                    {% if lec.status == 'P' %}    
+                    <div class="lec">
+                        <div class="pname">{{lec.subject.name}}</div>
+                        {% if future == False %}
+                        <div class="status"><i class="fa fa-check-circle purple" aria-hidden="true"></i></div>
+                        {% else %}
+                        <div class="error">Cannot mark future lectures.</div>
+                        {% endif %}
+                    </div>
+                    {% elif lec.status == 'A' %}
+                        <div class="lec">
+                            <div class="pname">{{lec.subject.name}}</div>
+                            {% if future == False %}
+                            <div class="status"><i class="fa fa-times-circle orange" aria-hidden="true"></i></div>
+                            {% else %}
+                            <div class="error">Cannot mark future lectures.</div>
+                            {% endif %}
+                        </div>
+                        {% elif lec.status == 'C' %}
+                            <div class="lec">
+                                <div class="pname">{{lec.subject.name}}</div>
+                                {% if future == False %}
+                                <div class="status"><i class="fa fa-ban yellow" aria-hidden="true"></i></div>
+                                {% else %}
+                                    <div class="error">Cannot mark future lectures.</div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="none">
+                You have no lectures on this day.
+            </div>
+        {% endif %}
+        </div>
+        <div class="float">
+            <button id="myBtn" class="add">Add Lecture</button>
+        </div>
+  <div id="myModal" class="modal">
+            <div class="modal-content">
+    <div class="pname">Add Lecture</div>
+    <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+    <div class="key">Subject</div>
+    <div class="value"><select  class = "options" name="new_lec">
+                    <option hidden diasabled value=""></option>
+                    {% for s in subs %}
+                    <option value="{{s.id}}">{{s.name}}</option>
+                    {% endfor %}
+    </select>
+    </div>
+    <div class="key"> Date of lecture</div>
+    <div class="value">
+    <input type="date" name="lec_date" value="{{y}}-{{m}}-{{d}}">
+    </div>
+    </div>
+    <input id="reset" class="sub" type="submit" name="addlec">
+    </form>
+  </div>
+</div>
+  {% endblock content %}
+
+  {% block script %}
+    <script>
+        var modal = document.getElementById("myModal");
+
+        var btn = document.getElementById("myBtn");
+
+
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+</script>
+  {% endblock script %}

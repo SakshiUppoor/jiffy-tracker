@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://kit.fontawesome.com/ee42aa8718.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Base</title>
+        <link rel="stylesheet" href="base.css">
+    </head>
+    <body>
+        <nav>
+            <div class="content">
+                <div class="main-section">
+                    <ul>
+                        <li><a class="main" href="#">Schedule</a>
+                        <li><a class="main" href="#">Calendar</a>
+                        <li><a class="main" href="#">Statistics</a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <ul>
+                        <li><a href="#">Semesters</a></li>
+                        <ul>
+                            <li><a href="#">Add Semester</a>
+                            <li><a href="#">Edit Semester Info</a>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="section2">
+                    <img class="avatar" src="images/default-profile-image.svg">
+                    <div class="name">Sakshi Uppoor</div>
+                </div>
+            </div>
+        </nav>
+        <div class="page">
+            <div class="navbar">
+                <img class="back" src="images/arrow-left-icon.svg">
+                <div class="page-name">Calendar</div>
+                <img class="menu-icon" src="images/menu-modern.svg">
+            </div>
+        
+    <script>
+        (function() {
+            var menu = document.querySelector('nav'),
+                menulink = document.querySelector('.menu-icon');
+        
+            menulink.addEventListener('click',function(e) {
+                menu.classList.toggle('active');
+                    e.preventDefault();
+            });
+        })();
+    </script>

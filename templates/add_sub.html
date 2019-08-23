@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block title %}
+    Add Subjects
+{% endblock title %}
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static 'styles/add_sub.css' %}">
+{% endblock csscontent %} 
+
+{% block pagename %}
+    Add Subjects
+{% endblock pagename %}
+
+{% block content %}
+    {% if sb %}
+    <div class="panel">
+        {% for s in sb %}    
+            <div class="subject">
+                {{s.name}} 
+            <a href="{% url 'seminfo:delete_subject' id=s.id %}">
+            <i class="fas fa-minus" id="min"></i></a>
+            </div> 
+            {% endfor %}
+    </div> 
+    {% endif %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="searchbox">
+            <input type="text" name="subject_name" placeholder="Enter Subject">
+            <div class="outer">
+                <input name="add" id="reset" class="button" type="submit" value="Add">
+            </div>
+    </div>
+
+    
+    <div class="wrapper">
+            <input type="submit" value="Next" name="next"></input>
+        </div>
+
+
+    </form>
+{% endblock content %}               

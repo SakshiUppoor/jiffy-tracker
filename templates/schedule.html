@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    Schedule
+{% endblock title %}
+
+{% block csscontent %}
+        <link rel="stylesheet" href="{% static 'styles/schedule.css' %}">
+{% endblock csscontent %}
+
+{% block pagename %} 
+    Schedule
+{% endblock pagename %}
+
+{% block schedule %}
+    currentpage
+{% endblock schedule %}
+
+{% block content %}
+    <div class="outer">
+    <div class="heading">{{day|title}}'s Lectures</div>
+    <div class="value">
+    <form method="POST">
+    {% csrf_token %} 
+        <select  class = "options" name="day">
+            <option {% if day == "today" %} selected {% endif %} value="today">Today</option>
+            <option {% if day == "tomorrow" %} selected {% endif %} value="tomorrow">Tomorrow</option>     
+    </select><input type="image" id="go" src="{% static 'images/go.svg' %}"></div></form>
+</div>
+    </div> 
+        <div class="lectures">
+        {% for period in schedule %}
+            <div class="lec">
+            {% for key,value in period.items %}
+            {% for sm in submonths %}
+            {% if key == sm.subject.name %}
+                <div class="pname">{{key}}</div>
+                    {% if value > 1 and sm.attendance > sm.semester.min_attendance %}
+                    <div class="status-purple">You can skip {{value}} lectures</div>
+                    {% elif value == 1 and sm.attendance > sm.semester.min_attendance %}
+                    <div class="status-purple">You can skip this lecture.</div>
+                    {% elif value == 0 %}
+                    <div class="status-yellow">You cannot skip this lecture</div>
+                    {% else %}
+                    <div class="status-orange">You must attend this lecture</div>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+            </div>
+{% endblock %}

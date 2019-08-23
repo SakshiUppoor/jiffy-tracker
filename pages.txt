@@ -1,0 +1,9 @@
+landing: /
+login: /login
+sign up: /signup
+calendar: /calendar
+statistics: /statistics
+semester info: /semesters
+add sem: /semesters/add
+add timetable: /semesters/add/timetable
+edit semester: /semesters/edit/<sem.id>

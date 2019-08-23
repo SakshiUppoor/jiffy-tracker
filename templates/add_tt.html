@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %} 
+    Add Timetable 
+{% endblock title %}
+
+{% block pagename %}
+    Add Timetable
+{% endblock pagename %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static 'styles/add_tt.css' %}">
+{% endblock csscontent %}
+
+{% block content %}
+    <div class="scrolling-wrapper">
+        <form method="post">
+        {% csrf_token %}
+            {% for d in dl %}
+            <div class="card">
+                <div class="day">{{d}}</div>
+                {% for n in nl %}
+                <select  class = "options" name="{{d}}_{{n}}">
+                    <option hidden diasabled value=""></option>
+                    {% for s in subs %}
+                    <option value="{{s.id}}">{{s.name}}</option>
+                    {% endfor %}
+                </select>
+                {% endfor %}
+            </div>
+        {% endfor %} 
+        </div>
+        <object align="right">
+        <p>
+            <input name="next" class="button-pri" type="submit" value="Done">
+            </input>
+        </p>
+    </object>
+        </form>
+{% endblock content %}

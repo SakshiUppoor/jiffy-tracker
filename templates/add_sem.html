@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    Add Semester 
+{% endblock title %}
+
+{% block pagename %}
+    Add Semester
+{% endblock pagename %}
+
+{% block csscontent %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/add_sem.css' %}">
+{% endblock csscontent %}
+    
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+         <div class="wrapper">
+        <div class="label">Semester Name</div>
+        <input name="sem_name" type="text"></input>
+        </div>
+
+        <div class="dates">
+        <div class="label">Start Date</div>
+        <input name="start_date" type="date"></input></div>
+
+        <div class="dates">
+        <div class="label">End Date</div>
+        <input name ="last_date" type="date"></input></div>
+
+        <div class="wrapper">
+        <div class="label">Minimum Attendance % </div>
+        <input name="min_att" type="number"></input>
+        </div>
+
+        <div class="outer">
+            <input type="submit" value="Next"></input>
+        </div>
+</form>
+{% endblock content %}

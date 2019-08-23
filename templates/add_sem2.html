@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/events.css' %}">
+    <meta charset="utf-8" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>-->
+</head>
+<body>
+    <aside class="sticky">
+        <div>
+        <figure>
+            <figcaption>Onyx.</figcaption>
+        </figure>
+        </div>
+        <div>
+        <nav >
+            <ul>
+                <li ><a href="#">Calendar</a></li>
+                <li><a href="#"  class="active">Statistics</a></li>
+                <li><a href="#" >Events</a></li>
+            </ul>
+        </nav>
+        </div>
+    </aside>
+    <div class="bar">
+    {{username}}
+    </div>
+    <main>
+        <form method="post">
+        {% csrf_token %}
+            Semester name <input type="text" name="sem_name"><br>
+            {% for s in subs%}
+            <div class="entered">
+                {{s}}
+                <button class="minus">-</button><br>
+            {% endfor %}
+            Subject name <input type="text" name="subject"><br>
+            <input type="submit">
+        </form>
+    </main>
+</body>
+</html>
+    

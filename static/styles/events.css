@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,700i&display=swap');
+
+body,html {
+    height: calc(100% -2em);
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    background: rgb(214, 214, 214);
+    display: grid;
+    grid-template-columns: 1060px;
+}
+
+aside {
+    background: #333659;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 100px auto;
+    padding: 2em;
+    margin: 0;
+    padding:0;
+    top: 0;
+    left: 0;
+    width: 193px;
+    height: 100vh;
+}
+
+figure {
+    margin: 0;
+    padding: 5;
+}
+
+figcaption {
+    font-size: 45px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+div {
+    width: 100%;
+}
+
+nav {
+    position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    height: 100%;
+}
+
+ul {
+    display: block;
+    margin-top: 2em;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+ul li a {
+    font-weight: bold;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: auto;
+    padding: 1em 3em;
+    margin: 20px;
+    color: rgba(255,255,255,.35);
+    transition: all 0.05s ease-in-out;
+    
+}
+
+ul li a:hover {    
+    color: rgba(255, 255, 255, 100);
+    
+}
+
+.active {
+    /*background: #f1557eff;*/
+    background: rgb(240,83,123);
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    color: rgba(255, 255, 255, 100) !important;
+}
+
+main {
+    margin: 15px 200px;
+    width: 100%;
+}
+
+.bar {
+    display: grid;
+    grid-template-rows: auto;
+    margin: 0px 193px;
+    width: 1145px;
+    height: 45px;
+    padding: 5px 5px;
+    text-align: right;
+}
+.banner {
+    background: rgb(131,58,180);
+    background: linear-gradient(310deg, rgba(131,58,180,1) 0%, rgba(174,74,150,1) 0%, rgba(240,83,123,1) 100%, rgba(252,176,69,1) 100%);
+    box-shadow: 0 4px 8px 0 rgba(146, 47, 73, 0.5), 0 6px 20px 0 rgba(138, 39, 65, 0.5);
+    padding: 2em 2em;
+    margin: 0px 10px;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+}
+
+h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 45px;
+    font-weight: bold;
+    text-shadow: #333659;
+    text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.47);
+}
+h6 {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    text-align: right;
+    font-weight: lighter;
+}
+
+.info {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 33% 33% 33%;
+}
+.subinfo {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    width: 50%;
+    padding: 2em 2em;
+    margin: 20px 10px;
+}
+
+.sticky {
+    overflow: hidden;
+    position: fixed;
+}
+
+.subname {
+    font-size:30px;
+}

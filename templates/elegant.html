@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static '/styles/myelegant.css' %}">
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function(){
+        var today = new Date(),
+            year = today.getFullYear(),
+            month = today.getMonth(),
+            monthTag =["January","February","March","April","May","June","July","August","September","October","November","December"],
+            monthTagShort =["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+            day = today.getDate(),
+            days = document.getElementsByTagName('td'),
+            selectedDay,
+            setDate,
+            daysLen = days.length;
+        // options should like '2014-01-01'
+        function Calendar(selector, options) {
+            this.options = options;
+            this.draw();
+        }
+        
+        Calendar.prototype.draw  = function() {
+            this.getCookie('selected_day');
+            this.getOptions();
+            this.drawDays();
+            var that = this,
+                reset = document.getElementById('reset'),
+                pre = document.getElementsByClassName('pre-button'),
+                next = document.getElementsByClassName('next-button');
+                
+                pre[0].addEventListener('click', function(){that.preMonth(); });
+                next[0].addEventListener('click', function(){that.nextMonth(); });
+                reset.addEventListener('click', function(){that.reset(); });
+            while(daysLen--) {
+                days[daysLen].addEventListener('click', function(){that.clickDay(this); });
+            }
+        };
+        
+        Calendar.prototype.drawHeader = function(e) {
+            var headDay = document.getElementsByClassName('head-day'),
+                headMonth = document.getElementsByClassName('head-month');
+                headDate = document.getElementsByClassName('head-date');
+
+                e?headDay[0].innerHTML = e : headDay[0].innerHTML = day;
+                headMonth[0].innerHTML = monthTag[month] +", " + year; 
+                headDate[0].innerHTML = (e?e:day) + "-" + monthTagShort[month] + "-" + year;
+        };
+        
+        Calendar.prototype.drawDays = function() {
+            var startDay = new Date(year, month, 1).getDay(),
+        //      下面表示这个月总共有几天
+                nDays = new Date(year, month + 1, 0).getDate(),
+        
+                n = startDay;
+        //      清除原来的样式和日期
+            for(var k = 0; k <42; k++) {
+                days[k].innerHTML = '';
+                days[k].id = '';
+                days[k].className = '';
+            }
+
+            for(var i  = 1; i <= nDays ; i++) {
+                days[n].innerHTML = i; 
+                n++;
+            }
+            
+            for(var j = 0; j < 42; j++) {
+                if(days[j].innerHTML === ""){
+                    
+                    days[j].id = "disabled";
+                    
+                }else if(j === day + startDay - 1){
+                    if((this.options && (month === setDate.getMonth()) && (year === setDate.getFullYear())) || (!this.options && (month === today.getMonth())&&(year===today.getFullYear()))){
+                        this.drawHeader(day);
+                        days[j].id = "today";
+                    }
+                }
+                if(selectedDay){
+                    if((j === selectedDay.getDate() + startDay - 1)&&(month === selectedDay.getMonth())&&(year === selectedDay.getFullYear())){
+                    days[j].className = "selected";
+                    this.drawHeader(selectedDay.getDate());
+                    }
+                }
+            }
+        };
+        
+        Calendar.prototype.clickDay = function(o) {
+            var selected = document.getElementsByClassName("selected"),
+                len = selected.length;
+            if(len !== 0){
+                selected[0].className = "";
+            }
+            o.className = "selected";
+            selectedDay = new Date(year, month, o.innerHTML);
+            this.drawHeader(o.innerHTML);
+            this.setCookie('selected_day', 1);
+            
+        };
+        
+        Calendar.prototype.preMonth = function() {
+            if(month < 1){ 
+                month = 11;
+                year = year - 1; 
+            }else{
+                month = month - 1;
+            }
+            this.drawHeader(1);
+            this.drawDays();
+        };
+        
+        Calendar.prototype.nextMonth = function() {
+            if(month >= 11){
+                month = 0;
+                year =  year + 1; 
+            }else{
+                month = month + 1;
+            }
+            this.drawHeader(1);
+            this.drawDays();
+        };
+        
+        Calendar.prototype.getOptions = function() {
+            if(this.options){
+                var sets = this.options.split('-');
+                    setDate = new Date(sets[0], sets[1]-1, sets[2]);
+                    day = setDate.getDate();
+                    year = setDate.getFullYear();
+                    month = setDate.getMonth();
+            }
+        };
+        
+        Calendar.prototype.reset = function() {
+            month = today.getMonth();
+            year = today.getFullYear();
+            day = today.getDate();
+            this.options = undefined;
+            this.drawDays();
+        };
+        
+        Calendar.prototype.setCookie = function(name, expiredays){
+            if(expiredays) {
+                var date = new Date();
+                date.setTime(date.getTime() + (expiredays*24*60*60*1000));
+                var expires = "; expires=" +date.toGMTString();
+            }else{
+                var expires = "";
+            }
+            document.cookie = name + "=" + selectedDay + expires + "; path=/";
+        };
+        
+        Calendar.prototype.getCookie = function(name) {
+            if(document.cookie.length){
+                var arrCookie  = document.cookie.split(';'),
+                    nameEQ = name + "=";
+                for(var i = 0, cLen = arrCookie.length; i < cLen; i++) {
+                    var c = arrCookie[i];
+                    while (c.charAt(0)==' ') {
+                        c = c.substring(1,c.length);
+                        
+                    }
+                    if (c.indexOf(nameEQ) === 0) {
+                        selectedDay =  new Date(c.substring(nameEQ.length, c.length));
+                    }
+                }
+            }
+        };
+        var calendar = new Calendar();
+        
+            
+        }, false);
+    
+    
+    </script>
+
+    {% endblock csscontent %}
+    {% block content %}
+    <div class="elegant-calendar">
+        <div onclick"=goToDate()" d="header" class="clearfix">
+           <div class="head-container">
+                <div  class="head-info">
+                    <div class="head-day"></div>
+                    <div class="head-month"></div>
+                </div>
+           </div>
+           <div class="pre-button"><</div>
+            <div class="next-button">></div>
+        </div>
+        <table id="calendar" class="thead">
+            <thead>
+                <tr class="tableheader">
+                    <div><th>Sun</th></div>
+                    <div><th>Mon</th></div>
+                    <div><th>Tue</th></div>
+                    <div><th>Wed</th></div>
+                    <div><th>Thu</th></div>
+                    <div><th>Fri</th></div>
+                    <div><th>Sat</th></div>
+                </tr>
+            </thead>
+        <table>
+        <table class="dates">
+            <tbody>
+                <tr class="datecolumn">
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                </tr>
+                <tr class="datecolumn">
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                </tr>
+                <tr class="datecolumn">
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                </tr>
+                <tr class="datecolumn">
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                </tr>
+                <tr class="datecolumn">
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                </tr>
+                <tr class="datecolumn">
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                    <div><td></td></div>
+                </tr>
+            </tbody>
+        </table>
+        <object align="right">
+       <button id="reset">Go  to today</button>
+       </object>
+       
+       {% for day in day_list %}
+       {{day}}<br>
+       {% for d in days %}
+           {% if d.name == day %}
+               {% for p in d.periods.all %}
+                    <div class="panel">
+                       <form method="post">
+                       {% csrf_token %}
+                       <div class="pname">{{p.name}}</div>
+                       <div class="options">
+                       <input type="radio" name="status"> Present<br>
+                       <input type="radio" name="status"> Absent<br>
+                       <input type="radio" name="status"> Cancelled<br>
+                       </div> 
+                       <input id="reset" class="submit" type="submit" name="{{p.id}}">
+                       </form>
+                   </div>
+               {% endfor %}
+           {% endif %}
+       {% endfor %}
+   {% endfor %}
+        </div>
+    </div>
+    <div class="head-date"></div>
+    {% for s in sem %}
+    {{s.start_date|date:'d-M-Y' }}<br>
+    {% endfor %}
+    {% endblock content %}
+    {% block scripts %}
+    <script>
+
+    function goToDate() {
+        window.loaction.href="www.google.com";
+    }
+    window.onload = function() {
+        var anchors = document.getElementsByTagName('td');
+        for(var i = 0; i < anchors.length; i++) {
+            var anchor = anchors[i];
+            anchor.onclick = function() {
+                code = this.getAttribute('whenClicked');
+                eval(code);   
+            }
+        }
+    }
+</script>
+    {% endblock scripts %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+    Statistics
+{% endblock title %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static '/styles/stats.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/circle.css' %}">
+{% endblock csscontent %}
+
+{% block pagename %} 
+    Statistics
+{% endblock pagename %}
+
+{% block stats %}
+    currentpage
+{% endblock stats %}
+
+{% block content %}
+    <div class="first">
+        <div class="heading">Overall</div>
+            <form action="{% url 'seminfo:seminfo' id=sem.id %}">
+                <button id="reset">
+                    View Info
+                </button>
+            </form>
+        </div>
+        <div class="current-panel">
+            <div class="wrapper">
+                <div class="info">
+                    <div class="current-sem">
+                        {{sem.name}}
+                    </div>
+                    <div class="label">Attended: </div>
+                    <h1>{{present}}/{{sum}}</h1><br>
+                    <div class="label">Cancelled: </div><h1>{{cancelled}}</h1><br>
+                    </div>
+                    <div class="c100 c100-main p{{percentInt}} main">
+                        <span>{{percent}}%</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="outer">
+            <div class="heading">{% if category == "all-time" %}All-time{% else %}Monthly{% endif %}</div>
+            <form method="post" class="schedulecol">
+            {% csrf_token %}
+                <div class="value"><select  class = "options" name="category">
+                
+                    <option value="all-time"{% if category == "all-time" %}selected{% endif %}>All-time</option>  
+                    
+                    {% for month in sem_months %}
+                        <option value="{{month}}" {% if category == month %} selected {% endif %}>{{month}}</option> 
+                    {% endfor %}    
+            </select>
+            <input type="image" id="go" src="{% static 'images/go.svg' %}"></div>
+            </form>
+    </div>
+</div>
+{% if category == "all-time" %}
+    <div class="panel">
+        {% for s in subs %}
+            <div class="sem">
+                <div class="details">
+                    <div class="sname">
+                        {{s.name}}
+                    </div>
+                            {% if s.attendance == sem.min_attendance or s.attendance == 0 or s.lec_to_skip == 0 %}
+                                <div class="status-yellow">You cannot skip the next lecture</div>
+                            {% elif s.attendance < sem.min_attendance %}
+                                <div class="status-orange">You need to attend next {{s.lec_to_skip}} lectures</div>
+                            {% else %}
+                                <div class="status-purple">You can skip next {{s.lec_to_skip}} lectures</div>
+                            {% endif %}
+                </div>
+                <div class="sem-info">
+                    <div class="info">
+                        <div class="label">Attended: </div><h1>{{s.lec_present}}/{{s.lec_total}}</h1><br>
+                        <div class="label">Cancelled: </div><h1>{{s.lec_cancelled}}</h1><br>
+                        </div>
+                        <div class="c100 p{{s.percentage_bar}} {% if s.attendance < sem.min_attendance %} orange {% elif s.attendance == sem.min_attendance %} yellow {% endif %} small">
+                                <span>{{s.attendance}}%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+{% else %}  
+
+    <div class="panel">
+        {% for s in submonths %}
+            <div class="sem">
+                <div class="details">
+                    <div class="sname">
+                        {{s.subject.name}}
+                    </div>
+                        {% if s.month == current_month %}
+                            {% if s.attendance == sem.min_attendance or s.attendance == 0 or s.lec_to_skip == 0 %}
+                                <div class="status-yellow">You cannot skip the next lecture</div>
+                            {% elif s.attendance < sem.min_attendance %}
+                                <div class="status-orange">You need to attend next {{s.lec_to_skip}} lectures</div>
+                            {% else %}
+                                <div class="status-purple">You can skip next {{s.lec_to_skip}} lectures</div>
+                            {% endif %}
+                        {% endif %}
+                </div>
+                <div class="sem-info">
+                    <div class="info">
+                        <div class="label">Attended: </div><h1>{{s.lec_present}}/{{s.lec_total}}</h1><br>
+                        <div class="label">Cancelled: </div><h1>{{s.lec_cancelled}}</h1><br>
+                        </div>
+                        <div class="c100 p{{s.percentage_bar}} {% if s.attendance < sem.min_attendance %} orange {% elif s.attendance == sem.min_attendance %} yellow {% endif %}  small">
+                                <span>{{s.attendance}}%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>                         
+{% endif %}      
+{% endblock content %}

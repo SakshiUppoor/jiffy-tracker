@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700|Roboto:400,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,600i&display=swap');
+
+.clearfix {
+    padding: 0 1em;
+}
+
+.head-container {
+    display: grid;
+    grid-template-columns: 10fr auto;
+    padding: 1.5em 0;
+    border-bottom: #cccccc 1px solid;
+}
+
+.head-date {
+    margin-top: 0.2em;
+    display: inline-block;
+    color: #404558;
+    font-weight: 500;
+    font-size: 1.7em;
+}
+
+.control {
+    display: inline-block;
+}
+
+.arrows {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 5em;
+    background: #ff6f47;
+    overflow: auto;
+    height: 2.5em;
+    grid-column-gap: 0.6em;
+    border-radius: 2em;
+    padding: 0 0.2em;
+    justify-content: center;
+
+}
+.pre-button, .next-button {
+    display: inline-block;
+    border: none;
+    background: #ff6f47;
+    position: relative;
+    top: 24%;
+}
+
+#pre, #next {
+    height: 1.2em;
+}
+
+
+.elegant-calendar {
+    width: 100%;
+    display: grid; 
+}
+
+table { 
+    border-collapse:collapse;
+    margin: 0px 0;
+    width: 100%;
+}
+
+.tableheader {  
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+th {
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+.dates {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+.dates td {
+    font-family: "Montserrat","sans-serif";
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+    border-radius: 50%;
+    width: 40px;
+    cursor: pointer;
+    -webkit-transition:all 0.2s ease-in;
+    transition:all 0.2s ease-in;
+}
+
+.dates tbody {
+    width: 100%;
+    margin: 80px;
+    padding: 6px 0;
+}
+
+#disabled {
+    width: 1px;
+     cursor: default;
+     background: rgb(236, 236, 236);
+ }
+ 
+#disabled:hover {
+     background: rgb(236, 236, 236);
+     color: #c9c9c9;
+ }
+ 
+.selected {
+    color: #5c6aff;
+    border: none;
+}
+
+tbody td:hover {
+    background: #e9ebff;
+    color: #5c6aff;
+}
+
+tbody td:active {
+    background: #e9ebff;
+    color: #b5bbff;
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+}
+
+#reset {
+    display: inline-block;
+    font-size: 1.2em;
+    top: 0.5em;
+    color: #fff;
+    background: #fbd05e;
+    cursor: pointer;
+    font-family: "Montserrat","sans-serif";
+    padding: 0.25em 0.5em;
+    height: 2em;
+    width: 7em;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 30px;
+    margin: 0.5em 1em;
+}
+
+#reset:hover {
+    color: #f8feff;
+}
+
+#reset:active{
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);  
+    border: none;   
+}
+
+.selected a {
+    color: #5c6aff !important;
+} 
+
+.datecolumn {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-row-gap: 8px;;
+    margin: 10px 2px;
+    justify-content: center;
+}
+
+.datecolumn td{
+    height: 20px;
+    padding: 10px 0;
+    text-align: center;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tableheader {
+    color: #c5cbd0;
+}
+
+.datecolumn td a {
+    text-decoration: none;
+    color: #9ba1a5;
+    height: 100%;
+    width: 100%;
+    font-family: "Montserrat","sans-serif";
+}
+
+.datecolumn td a:hover {
+    color: #5c6aff;
+}
+
+.dummy {
+    display: grid;
+    grid-template-columns: 20fr 1fr;
+}
+
+.heading {
+    margin: 0 1em;
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-top: 0.8em;
+    font-family: "Montserrat","sans-serif";
+}
+
+.purple {
+    color: #aab1ff;
+}
+
+.yellow {
+    color: #ffe7a3;
+}
+
+.orange {
+    color: #ffb4a0;
+}
+
+i {
+    font-size: 2em;
+    padding: 0;
+}
+
+.lectures {
+    background: #fff;
+    margin: 1em;
+    padding: 0.2em 2em;
+    border-radius: 0.5em;
+    padding-bottom: 0;
+    padding-right: 0;
+}
+
+.pname {
+    font-weight: 500;
+    font-size: 1.3em;
+    margin-top: 0.2em;
+    font-family: "Montserrat","sans-serif";
+}
+
+.lec {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 1em 0;
+    border-bottom: #f3f4fc 1px solid;
+}
+
+.options, input[type="date"] {
+    color: #999999;
+    font-family: "Roboto","sans-serif";
+    font-size: 1em;
+    padding: 0.5em 0.7em;
+    margin: 0.1em 0.5em;
+    background-color: #fff;
+    border-radius: 1.5em;
+    border-color: #cccc;
+    border-width: 1px;
+}
+
+.options:focus, input[type="date"]:focus {
+    outline: none;
+}
+
+#go {
+    height: 1.5em;
+    margin-right: 0.6em;
+    margin-top: 0.5em;
+}
+
+.value {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.float {
+    text-align: center;
+}
+.add {
+    background-color: #ff6f47;;
+    color: #fff;
+    border-radius: 1em;
+    font-size: 1.3em;
+    text-align: center;
+    border: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0.4em 1em;
+    margin-bottom: 0.6em;
+    font-weight: 500;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 50% auto; 
+  padding: 20px;
+  width: 80%;  
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-row-gap: 5px;
+    height: 100px;
+    margin: 10px 10px;
+}
+
+.key {
+    font-size: 20px;
+    font-family: "Lato","sans-serif";
+}
+
+.add:active {
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);    
+}
+
+.add:focus {
+    border: none;
+    outline: none;
+}
+
+.lec form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.none {
+    color: #c9c9c9;
+    padding: 3em 1em;
+    text-align: center;
+}
+
+.error {
+    color: #c9c9c9;
+    font-size: 1em;
+}

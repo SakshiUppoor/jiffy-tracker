@@ -1,0 +1,46 @@
+h1 {
+    font-size: 100px !important;
+}
+
+.jumbotron {
+    display: block;
+    max-height: 180px;
+    color: #080808;
+    font-size: xx-large !important;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;  
+    background-color:transparent !important;  
+}
+.button {
+    background-color: #29B15C;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+.button:hover {
+    box-shadow: 0 4px 8px 0 #29B15C, 0 6px 20px 0 #29B15C;
+}
+
+.form-control {
+    border-radius: 20px !important;
+    border: 0px !important;
+    background-color: rgb(223, 223, 223) !important;
+}
+
+.vline {
+    border-right: 1px solid #97ad99; /* Border on the left */
+    width: 1px; /* Width instead of height */
+    height: 400px;
+    position: absolute;
+    left: 50%;
+}
+

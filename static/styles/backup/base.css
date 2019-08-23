@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,600i&display=swap');
+body {
+    font-family: 'Lato', sans-serif;
+    background: rgb(239, 239, 240);
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    z-index: 100;
+    position: absolute;
+    top: 0%;
+    position: -webkit-sticky;
+    position: sticky;
+    margin: 0px 0px;
+    padding: 5px 0px;
+    overflow: auto;
+    background: rgb(34, 34, 34);
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    place-items: center;
+}
+
+.menu-icon {
+    width: 25px;
+    cursor: pointer;
+}
+
+.logo {
+    height: 40px;
+    padding: 10px 0;
+}
+
+nav {
+    position: -webkit-sticky;
+    position: sticky;
+    display: none;
+    z-index: 10;
+    top: 70px;
+}
+.active {
+    position:fixed;
+    display: grid;
+    background: rgb(34, 34, 34);
+    top: 70px;
+    left: 0%; 
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    /*-webkit-box-shadow: 10px 10px 20px 6px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 10px 20px 6px rgba(0,0,0,0.45);
+    box-shadow: 10px 10px 20px 6px rgba(0,0,0,0.2);*/
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 10px;
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: 120px auto;
+    height: 0.7em;
+}
+
+.name {
+    padding: 10px 0px;
+    margin: 0px;
+    font-size: 30px;
+}
+.avatar {
+    height: 35px;
+    border-radius: 50%;
+}
+
+.avatar2 {
+    width: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    margin: 20px;
+}
+
+ul {
+    background: skyblue;
+    list-style:none;
+    display: inline-block;
+}
+li {
+    padding: 10px 0px;
+    display: inline-block;
+}
+
+ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 10px 0px;
+}
+
+i {
+    display: inline-block;
+    padding: 10px;
+    color: rgb(148, 148, 148);
+}
+
+img.avatar:hover {
+    background:rgba(0,0,0,0.6);
+    opacity: 1;
+}
+
+.group {
+    margin: 50px;
+    background: pink;
+    display:inline-block;
+    border-bottom: #fff 5px solid;
+}

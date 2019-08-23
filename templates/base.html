@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <script src="https://kit.fontawesome.com/ee42aa8718.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <link rel="stylesheet" href="{% static '/styles/base.css' %}">
+        {% block csscontent %}
+        {% endblock csscontent %}
+        
+        
+    </head>
+    <body>
+        <nav>
+                <span class="close">&times;</span>
+            <div class="content">
+                <div class="appname">Jiffy</div>
+                <div class="main-section">
+                    <ul>
+                        <li><a class="mainsec {% block schedule %}{% endblock schedule %}" href="{% url 'seminfo:scheduleDefault' %}"><ion-icon name="list-box"></ion-icon>&nbsp;&nbsp;&nbsp;Schedule</a>
+                        <li><a class="mainsec {% block cal %}{% endblock cal %}" href="{% url 'seminfo:calendartoday' %}"><ion-icon name="calendar"></ion-icon>&nbsp;&nbsp;&nbsp;Calendar</a>
+                        <li><a class="mainsec {% block stats %}{% endblock stats %}" href="{% url 'seminfo:stats' %}"><ion-icon name="trending-up"></ion-icon>&nbsp;&nbsp;&nbsp;Statistics</a>
+                    </ul>
+                </div>
+                <div class="section">
+                    <ul>
+                        <li><a href="{% url 'seminfo:sem' %}">Semesters</a></li>
+                        <ul>
+                            <li><a href="{% url 'seminfo:add_sem' %}">Add Semester</a>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="section2">
+                    <img class="avatar" src="{% static '/images/default-profile-image.svg' %}">
+                    <div class="name">{{username}}</div>
+                    
+                </div>
+            </div>
+                <a href="{% url 'accounts:user_logout' %}">
+                    <div class="log">
+                        <button id="logout"><ion-icon name="log-out"></ion-icon>&nbsp;Log Out</button>
+                    </div></a>
+        </nav>
+        
+        <div class="navbar">
+            <img class="back" src="{% static '/images/arrow-left-icon.svg' %}">
+            <div class="page-name">{% block pagename %}
+            {% endblock pagename %}</div>
+            <img class="menu-icon" src="{% static '/images/menu-modern.svg' %}">
+            </div>
+        {% block content %}
+        {% endblock content %}
+    <script>
+        (function() {
+            var menu = document.querySelector('nav'),
+                menulink = document.querySelector('.menu-icon');
+                close = document.querySelector('.close');
+        
+            menulink.addEventListener('click',function(e) {
+                menu.classList.toggle('active');
+                    e.preventDefault();
+            });
+            close.addEventListener('click',function(e) {
+                menu.classList.toggle('active');
+                    e.preventDefault();
+            });
+        })();
+    </script>
+
+    {% block scripts %}
+    {% endblock scripts %}
+    {% block script %}
+    {% endblock script %}
+</html>
