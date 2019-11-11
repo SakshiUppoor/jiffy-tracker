@@ -27,9 +27,9 @@
 <img style="margin:1em" src="https://imgur.com/0Aq1hGO.png" height="450"/>
 <img style="margin:1em" src="https://i.imgur.com/7v0higm.png?1" height="450"/>
 <img style="margin:1em" src="https://imgur.com/BJWaRq3.png" height="450"/>
-<img style="margin:1em" src="https://imgur.com/MyxWCMf.png" height="450"/>
 <img style="margin:1em" src="https://imgur.com/myQlD0A.png" height="450"/>
 <img style="margin:1em" src="https://imgur.com/iiU3yrP.png" height="450"/>
+<img style="margin:1em" src="https://imgur.com/MyxWCMf.png" height="450"/>
 </div>
 
 ### Pages
