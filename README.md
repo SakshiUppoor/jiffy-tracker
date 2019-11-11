@@ -1,13 +1,13 @@
 <br />
 <p align="center">
   <a href="http://spacex-web-api.herokuapp.com/">
-    <img src="https://imgur.com/H2tVlcj.png" alt="Logo" width="80" height="80">
+    <img src="https://imgur.com/KVb1S88.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Jiffy Attendance Tracker</h3>
 
   <p align="center">
-    Read about all the SpaceX launches in one place!
+    An attendance manager that provides a smart and efficient way for students to keep track of their attendance.
     <br />
     <a href="https://github.com/SakshiUppoor/spacex-website"><strong>Explore the docs »</strong></a>
     <br />
@@ -21,23 +21,42 @@
 </p>
 
 ## About the Project
-![Product Name Screen Shot](https://imgur.com/FJdOt7y.png?1)
-![Product Name Screen Shot](https://i.imgur.com/6W8p9Xq.png?1)
+<div style="display: inline-block; valign: top;">
+<img style="margin:1em" src="https://i.imgur.com/tlY1tIu.png?1" height="500"/>
+<img style="margin:1em" src="https://imgur.com/OInUlSu.png" height="450"/>
+<img style="margin:1em" src="https://imgur.com/0Aq1hGO.png" height="450"/>
+<img style="margin:1em" src="https://i.imgur.com/7v0higm.png?1" height="450"/>
+<img style="margin:1em" src="https://imgur.com/BJWaRq3.png" height="450"/>
+<img style="margin:1em" src="https://imgur.com/MyxWCMf.png" height="450"/>
+<img style="margin:1em" src="https://imgur.com/myQlD0A.png" height="450"/>
+<img style="margin:1em" src="https://imgur.com/iiU3yrP.png" height="450"/>
+</div>
 
 ### Pages
-* Home(Latest & upcoming launch)
-* Launches(Upcoming, Past, All)
-* Rockets
-* Cores
-* Missions
+* landing: /
+* login: /login
+* sign up: /signup
+* calendar: /calendar
+* statistics: /statistics
+* semester info: /semesters
+* add sem: /semesters/add
+* add timetable: /semesters/add/timetable
+* edit semester: /semesters/edit/<sem.id>
 
 ### Features
-* Filter through upcoming and past launches
-* Refresh button to check for updates
+
+##### Timetable
+We will remind you which lectures you have daily so that you don't have to.
+Daily and flexible schedule for systematic management.
+
+##### Calendar
+A calendar view which makes navigation easy
+
+##### Statistics
+Detailed subject-wise stats to help you reach your target
 
 ### Built With
 * [Django](https://docs.djangoproject.com/en/2.2/) - The framework used
-* [SpaceX API](https://docs.spacexdata.com/?version=latest) - The API used
 * [Inkscape](https://inkscape.org/) - Design software for icons
 
 
