@@ -22,6 +22,7 @@
 
 ## Team
 * <a href="https://github.com/SakshiUppoor"><b>Sakshi Uppoor</b></a> - Backend & Design
+* <a href="https://github.com/SiddhiJhunjhunwala"><b>Siddhi Jhunjhunwala</b></a> - Frontend & Design
 
 ## About the Project
 <div style="display: inline-block; valign: top; text-align:center;">
