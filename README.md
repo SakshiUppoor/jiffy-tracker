@@ -20,6 +20,9 @@
   </p>
 </p>
 
+## Team
+* <a href="https://github.com/SakshiUppoor"><b>Sakshi Uppoor</b></a> - Backend & Design
+
 ## About the Project
 <div style="display: inline-block; valign: top; text-align:center;">
 <img style="margin:1em" src="https://i.imgur.com/tlY1tIu.png?1" height="500"/>
